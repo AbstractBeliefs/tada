@@ -1,5 +1,6 @@
 import re
 from collections import defaultdict
+import jinja2
 
 
 # Create the emote pack container
@@ -48,5 +49,10 @@ for line in inputFile:
 
         InputPack.emotelist[line[0]] = line[1:]
 
-for k, v in InputPack.emotelist.iteritems():
-    print k, "=>", v
+# Build the output file
+env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader("./templates")
+)
+
+vacuumTemplate = env.get_template("vacuum.jtp")
+print vacuumTemplate.render(Emotes=InputPack)

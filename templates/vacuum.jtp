@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<icondef>
+    <name>{{ Emotes.name }}</name>
+    <description> {{ Emotes.desc }} </description>
+    <author>{{ Emotes.author }}</author>
+    <version>{{ Emotes.version }}</version>
+
+    {% for k, v in Emotes.emotelist.iteritems() %}
+    <icon>
+        {% for shortcut in v %}
+        <text>{{ shortcut }}</text>
+        {% endfor %}
+        <object mime='abc/def'>{{ k }}</object>
+    </icon>
+
+    {% endfor %}
+</icondef>
