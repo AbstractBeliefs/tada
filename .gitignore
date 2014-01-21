@@ -1,3 +1,10 @@
+# Data directories
+input/*
+output/*
+
+# PyCharm directory
+.idea/*
+
 *.py[cod]
 
 # C extensions
