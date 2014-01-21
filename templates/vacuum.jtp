@@ -5,12 +5,12 @@
     <author>{{ Emotes.author }}</author>
     <version>{{ Emotes.version }}</version>
 
-    {% for k, v in Emotes.emotelist.iteritems() %}
+    {% for file in Emotes.emotelist %}
     <icon>
-        {% for shortcut in v %}
+        {% for shortcut in file.shortcuts %}
         <text>{{ shortcut }}</text>
         {% endfor %}
-        <object mime='abc/def'>{{ k }}</object>
+        <object mime='{{ file.filetype }}'>{{ file.filename }}</object>
     </icon>
 
     {% endfor %}

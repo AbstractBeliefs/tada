@@ -1,6 +1,6 @@
 import re
-from collections import defaultdict
 import jinja2
+import mimetypes
 
 
 # Create the emote pack container
@@ -10,7 +10,13 @@ class EmotePack(object):
     author = ""
     version = ""
     icon = ""
-    emotelist = defaultdict(list)
+    emotelist = []
+
+
+class Emote(object):
+    filename = ""
+    filetype = ""
+    shortcuts = []
 
 inputData = open(r"input\theme", 'r')
 inputData = inputData.read()
@@ -47,10 +53,17 @@ for line in inputFile:
         line = line.replace('!', '')    # Strip off the leading !
         line = line.split()             # Split into tokens
 
-        InputPack.emotelist[line[0]] = line[1:]
+        thisEmote = Emote()
+        thisEmote.filename = line[0]
+        thisEmote.filetype = mimetypes.guess_type(line[0])[0]
+        thisEmote.shortcuts = line[1:]
+
+        InputPack.emotelist.append(thisEmote)
 
 # Build the output file
 env = jinja2.Environment(
+    trim_blocks=True,
+    lstrip_blocks=True,
     loader=jinja2.FileSystemLoader("./templates")
 )
 
