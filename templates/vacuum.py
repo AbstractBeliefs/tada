@@ -1,8 +1,14 @@
 from yapsy.IPlugin import IPlugin
 import jinja2
+import zipfile
 
 class VacuumBackend(IPlugin):
-    def output(self, pack):
+    def build(self, pack):
+        self.pack = pack
+        self.buildicondef()
+        self.makeZip()
+
+    def buildicondef(self):
         env = jinja2.Environment(
             trim_blocks=True,
             lstrip_blocks=True,
@@ -10,7 +16,13 @@ class VacuumBackend(IPlugin):
         )
 
         vacuumTemplate = env.from_string(self.template)
-        print vacuumTemplate.render(Emotes=pack)
+        self.icondef = vacuumTemplate.render(Emotes=self.pack)
+
+    def makeZip(self):
+        outzip = zipfile.ZipFile("output/vacuum.zip", 'w')
+        outzip.writestr("BerachsEmotePack-vacuum/icon.def.xml", self.icondef)
+        outzip.close()
+
 
     template = \
 """<?xml version='1.0' encoding='UTF-8'?>
