@@ -21,6 +21,13 @@ class VacuumBackend(IPlugin):
     def makeZip(self):
         outzip = zipfile.ZipFile("output/vacuum.zip", 'w')
         outzip.writestr("BerachsEmotePack-vacuum/icon.def.xml", self.icondef)
+        for emote in self.pack.emotelist:
+            try:
+                outzip.write("input/"+emote.filename, "BerachsEmotePack-vacuum/"+emote.filename)
+            except OSError:
+                # The underlying emote file isn't found
+                # This throws varying errors, but are all OSError or subclasses
+                pass
         outzip.close()
 
 
