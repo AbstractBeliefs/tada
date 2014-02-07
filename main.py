@@ -54,7 +54,7 @@ for line in inputFile:
         line = line.split()             # Split into tokens
 
         thisEmote = Emote()
-        thisEmote.filename = line[0]
+        thisEmote.filename = line[0]    # Identify the file and its type, as required for some formats.
         thisEmote.filetype = mimetypes.guess_type(line[0])[0]
         thisEmote.shortcuts = line[1:]
 

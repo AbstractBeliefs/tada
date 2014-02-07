@@ -2,7 +2,11 @@ from yapsy.IPlugin import IPlugin
 import jinja2
 import zipfile
 
+
 class VacuumBackend(IPlugin):
+    pack = None
+    icondef = ""
+        
     def build(self, pack):
         self.pack = pack
         self.buildicondef()
