@@ -9,7 +9,9 @@ class VacuumBackend(IPlugin):
         
     def build(self, pack):
         self.pack = pack
+        print "[Vacuum] Building icondef..."
         self.buildicondef()
+        print "[Vacuum] Building zip..."
         self.makeZip()
 
     def buildicondef(self):

@@ -4,7 +4,37 @@ import zipfile
 
 
 class AdiumBackend(IPlugin):
-    
+    pack = None
+    emotelist = ""
+
+    def build(self, pack):
+        self.pack = pack
+        print "[Adium] Building emote list..."
+        self.buildemotelist()
+        print "[Adium] Building zip..."
+        self.makeZip()
+
+    def buildemotelist(self):
+        env = jinja2.Environment(
+            trim_blocks=True,
+            lstrip_blocks=True,
+        )
+
+        adiumTemplate = env.from_string(self.template)
+        self.emotelist = adiumTemplate.render(Emotes=self.pack)
+
+    def makeZip(self):
+        outzip = zipfile.ZipFile("output/adium.zip", 'w')
+        outzip.writestr("BerachsEmotePack.AdiumEmoticonset/Emoticons.plist", self.emotelist)
+        for emote in self.pack.emotelist:
+            try:
+                outzip.write("input/"+emote.filename, "BerachsEmotePack.AdiumEmoticonset/"+emote.filename)
+            except OSError:
+                # The underlying emote file isn't found
+                # This throws varying errors, but are all OSError or subclasses
+                pass
+        outzip.close()
+
     template = \
 """<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
