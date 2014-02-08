@@ -15,8 +15,7 @@ class VacuumBackend(IPlugin):
     def buildicondef(self):
         env = jinja2.Environment(
             trim_blocks=True,
-            lstrip_blocks=True,
-            loader=jinja2.FileSystemLoader("./templates")
+            lstrip_blocks=True
         )
 
         vacuumTemplate = env.from_string(self.template)
