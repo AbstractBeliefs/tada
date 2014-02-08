@@ -1,0 +1,3 @@
+[Core]
+Name = Adium Output Backend
+Module = adium.py
