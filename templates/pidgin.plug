@@ -1,0 +1,3 @@
+[Core]
+Name = Pidgin Output Backend
+Module = pidgin.py
