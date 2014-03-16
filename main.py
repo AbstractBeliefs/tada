@@ -1,7 +1,7 @@
 import re
 import mimetypes
-from os.path import sep
 from yapsy.PluginManager import PluginManager
+from os import path
 
 
 # Create the emote pack container
@@ -19,8 +19,7 @@ class Emote(object):
     filetype = ""
     shortcuts = []
 
-inputPath = "input" + sep + "theme"
-inputData = open(inputPath, 'r')
+inputData = open(path.join("input", "theme"), 'r')
 inputData = inputData.read()
 
 # Instantiate and fill the pack metadata
@@ -46,8 +45,7 @@ except IndexError:
     pass
 
 # Reopen the pack in line mode
-inputFilePath = "input" + sep + "theme"
-inputFile = open(inputFilePath, 'r')
+inputFile = open(path.join("input", "theme"), 'r')
 inputFile = inputFile.readlines()
 
 # Fill the container with Emotes
