@@ -25,10 +25,10 @@ class AdiumBackend(IPlugin):
 
     def makeZip(self):
         outzip = zipfile.ZipFile("output/adium.zip", 'w')
-        outzip.writestr("BerachsEmotePack.AdiumEmoticonset/Emoticons.plist", self.emotelist)
+        outzip.writestr(self.pack.name+".AdiumEmoticonset/Emoticons.plist", self.emotelist)
         for emote in self.pack.emotelist:
             try:
-                outzip.write("input/"+emote.filename, "BerachsEmotePack.AdiumEmoticonset/"+emote.filename)
+                outzip.write("input/"+emote.filename, self.pack.name+".AdiumEmoticonset/"+emote.filename)
             except OSError:
                 # The underlying emote file isn't found
                 # This throws varying errors, but are all OSError or subclasses

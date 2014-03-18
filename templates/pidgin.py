@@ -12,10 +12,10 @@ class PidginBackend(IPlugin):
 
     def makeZip(self):
         outzip = zipfile.ZipFile("output/pidgin.zip", 'w')
-        outzip.write("input/theme", "BerachsEmotePack-pidgin/theme")
+        outzip.write("input/theme", self.pack.name+"-pidgin/theme")
         for emote in self.pack.emotelist:
             try:
-                outzip.write("input/"+emote.filename, "BerachsEmotePack-pidgin/"+emote.filename)
+                outzip.write("input/"+emote.filename, self.pack.name+"-pidgin/"+emote.filename)
             except OSError:
                 # The underlying emote file isn't found
                 # This throws varying errors, but are all OSError or subclasses
