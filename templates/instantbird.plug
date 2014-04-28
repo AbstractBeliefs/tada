@@ -1,0 +1,3 @@
+[Core]
+Name = InstantBird Output Backend
+Module = instantbird.py
