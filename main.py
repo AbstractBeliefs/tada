@@ -2,6 +2,7 @@ import re
 import mimetypes
 from yapsy.PluginManager import PluginManager
 from os import path
+from PIL import Image
 
 
 # Create the emote pack container
@@ -18,6 +19,8 @@ class Emote(object):
     filename = ""
     filetype = ""
     shortcuts = []
+    width = 0
+    height = 0
 
 inputData = open(path.join("input", "theme"), 'r')
 inputData = inputData.read()
@@ -58,6 +61,12 @@ for line in inputFile:
         thisEmote.filename = line[0]    # Identify the file and its type, as required for some formats.
         thisEmote.filetype = mimetypes.guess_type(line[0])[0]
         thisEmote.shortcuts = line[1:]
+
+        try:                # Dimensions are required for phpBB
+            im = Image.open(path.join("input", thisEmote.filename))
+            thisEmote.width, thisEmote.height = im.size
+        except IOError:     # If the file doesn't exist, lets not package it, either
+            continue
 
         InputPack.emotelist.append(thisEmote)
 

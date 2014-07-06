@@ -22,3 +22,4 @@ Currently supported formats
 * Psi
 * Vacuum
 * Gajim
+* phpBB
