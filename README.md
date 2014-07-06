@@ -21,3 +21,4 @@ Currently supported formats
 * Pidgin
 * Psi
 * Vacuum
+* Gajim

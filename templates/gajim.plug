@@ -1,0 +1,3 @@
+[Core]
+Name = Gajim Output Backend
+Module = gajim.py
