@@ -23,7 +23,7 @@ class GajimBackend(IPlugin):
         outzip.writestr("BerachsEmotePack-gajim/emoticons.py", self.emoticons)
         for emote in self.pack.emotelist:
             try:
-                outzip.write("input/"+emote.filename, "BerachsEmotePack-psi/"+emote.filename)
+                outzip.write("input/"+emote.filename, "BerachsEmotePack-gajim/"+emote.filename)
             except OSError:
                 # The underlying emote file isn't found
                 # This throws varying errors, but are all OSError or subclasses
