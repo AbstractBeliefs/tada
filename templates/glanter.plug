@@ -1,0 +1,3 @@
+[Core]
+Name = HTML Output Backend
+Module = glanter.py
