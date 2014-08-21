@@ -1,0 +1,3 @@
+[Core]
+Name = Trillian Output Backend
+Module = trillian.py
