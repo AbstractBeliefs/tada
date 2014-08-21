@@ -25,8 +25,8 @@ class TrillianBackend(IPlugin):
 
     def makeZip(self):
         outzip = zipfile.ZipFile("output/Trillian.zip", 'w')
-        outzip.writestr("Ponypack-trillian/main.xml", self.trillianzip)
-        outzip.writestr("Ponypack-trillian/desc.txt", "emot")
+        outzip.writestr("BerachsEmotePack-trillian/main.xml", self.trillianzip)
+        outzip.writestr("BerachsEmotePack-trillian/desc.txt", "emot")
         for emote in self.pack.emotelist:
             try:
                 outzip.write("input/"+emote.filename, "BerachsEmotePack-trillian/"+emote.filename)
