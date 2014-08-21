@@ -39,7 +39,7 @@ class TrillianBackend(IPlugin):
 
     template = \
 """{% for emote in Emotes.emotelist %}
-<bitmap name="{{ emote.filename }}" file="../../stixe/plugins/Ponypack-trillian/{{ emote.filename }}" />
+<bitmap name="{{ emote.filename }}" file="../../stixe/plugins/BerachsEmotePack-trillian/{{ emote.filename }}" />
 {% endfor %}
 <prefs>
 <control name="emoticons" type="emoticons">
