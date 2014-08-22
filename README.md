@@ -23,3 +23,4 @@ Currently supported formats
 * Vacuum
 * Gajim
 * phpBB
+* Trillian
